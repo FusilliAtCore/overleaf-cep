@@ -1,6 +1,5 @@
 import { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { debounce, throttle } from 'lodash'
-import PdfViewerControls from './pdf-viewer-controls'
 import PdfViewerControlsToolbar from './pdf-viewer-controls-toolbar'
 import { useProjectContext } from '../../../shared/context/project-context'
 import usePersistedState from '../../../shared/hooks/use-persisted-state'
@@ -14,8 +13,8 @@ import * as eventTracking from '../../../infrastructure/event-tracking'
 import { getPdfCachingMetrics } from '../util/metrics'
 import { debugConsole } from '@/utils/debugging'
 import { usePdfPreviewContext } from '@/features/pdf-preview/components/pdf-preview-provider'
-import { useFeatureFlag } from '@/shared/context/split-test-context'
 import usePresentationMode from '../hooks/use-presentation-mode'
+import useMouseWheelZoom from '../hooks/use-mouse-wheel-zoom'
 
 type PdfJsViewerProps = {
   url: string
@@ -29,8 +28,6 @@ function PdfJsViewer({ url, pdfFile }: PdfJsViewerProps) {
     useCompileContext()
 
   const { setLoadingError } = usePdfPreviewContext()
-
-  const hasNewPdfToolbar = useFeatureFlag('pdf-controls')
 
   // state values persisted in localStorage to restore on load
   const [scale, setScale] = usePersistedState(
@@ -388,15 +385,6 @@ function PdfJsViewer({ url, pdfFile }: PdfJsViewerProps) {
   const setZoom = useCallback(
     zoom => {
       switch (zoom) {
-        // TODO: We can remove fit-width and fit-height once the
-        // pdf toolbar is fully rolled out
-        case 'fit-width':
-          setScale('page-width')
-          break
-
-        case 'fit-height':
-          setScale('page-height')
-          break
         case 'zoom-in':
           if (pdfJsWrapper) {
             setScale(
@@ -461,11 +449,18 @@ function PdfJsViewer({ url, pdfFile }: PdfJsViewerProps) {
             event.preventDefault()
             setZoom('page-width')
             break
+
+          case '9':
+            event.preventDefault()
+            setZoom('page-height')
+            break
         }
       }
     },
     [initialised, setZoom]
   )
+
+  useMouseWheelZoom(pdfJsWrapper, setScale)
 
   const requestPresentationMode = usePresentationMode(
     pdfJsWrapper,
@@ -497,22 +492,16 @@ function PdfJsViewer({ url, pdfFile }: PdfJsViewerProps) {
       >
         <div className="pdfViewer" />
       </div>
-      <div className="pdfjs-controls" tabIndex={0}>
-        {hasNewPdfToolbar ? (
-          toolbarInfoLoaded && (
-            <PdfViewerControlsToolbar
-              requestPresentationMode={requestPresentationMode}
-              setZoom={setZoom}
-              rawScale={rawScale}
-              setPage={handlePageChange}
-              page={page}
-              totalPages={totalPages}
-            />
-          )
-        ) : (
-          <PdfViewerControls setZoom={setZoom} />
-        )}
-      </div>
+      {toolbarInfoLoaded && (
+        <PdfViewerControlsToolbar
+          requestPresentationMode={requestPresentationMode}
+          setZoom={setZoom}
+          rawScale={rawScale}
+          setPage={handlePageChange}
+          page={page}
+          totalPages={totalPages}
+        />
+      )}
     </div>
   )
 }

@@ -8,7 +8,10 @@ const HistoryManager = require('../History/HistoryManager')
 const DocumentUpdaterHandler = require('../DocumentUpdater/DocumentUpdaterHandler')
 const DocstoreManager = require('../Docstore/DocstoreManager')
 const ProjectOptionsHandler = require('../Project/ProjectOptionsHandler')
-const { db } = require('../../infrastructure/mongodb')
+const {
+  db,
+  READ_PREFERENCE_SECONDARY,
+} = require('../../infrastructure/mongodb')
 
 /**
  * Migrate projects based on a query.
@@ -23,6 +26,7 @@ const { db } = require('../../infrastructure/mongodb')
  * @param {boolean} [opts.force]
  * @param {boolean} [opts.stopOnError]
  * @param {boolean} [opts.quickOnly]
+ * @param {number} [opts.concurrency]
  */
 async function migrateProjects(opts = {}) {
   const {
@@ -35,9 +39,14 @@ async function migrateProjects(opts = {}) {
     force = false,
     stopOnError = false,
     quickOnly = false,
+    concurrency = 1,
   } = opts
 
   const clauses = []
+
+  // skip projects that don't have full project history
+  clauses.push({ 'overleaf.history.id': { $exists: true } })
+
   if (projectIds != null) {
     clauses.push({ _id: { $in: projectIds.map(id => new ObjectId(id)) } })
   }
@@ -58,15 +67,41 @@ async function migrateProjects(opts = {}) {
 
   const projects = db.projects
     .find(filter, {
+      readPreference: READ_PREFERENCE_SECONDARY,
       projection: { _id: 1, overleaf: 1 },
     })
     .sort({ _id: -1 })
 
-  let projectsProcessed = 0
+  let terminating = false
+  const handleSignal = signal => {
+    logger.info({ signal }, 'History ranges support migration received signal')
+    terminating = true
+  }
+  process.on('SIGINT', handleSignal)
+  process.on('SIGTERM', handleSignal)
+
+  const projectsProcessed = {
+    quick: 0,
+    skipped: 0,
+    resync: 0,
+    total: 0,
+  }
+  const jobsByProjectId = new Map()
+  let errors = 0
+
   for await (const project of projects) {
-    if (projectsProcessed >= maxCount) {
+    if (projectsProcessed.total >= maxCount) {
       break
     }
+
+    if (errors > 0 && stopOnError) {
+      break
+    }
+
+    if (terminating) {
+      break
+    }
+
     const projectId = project._id.toString()
 
     if (!force) {
@@ -81,45 +116,70 @@ async function migrateProjects(opts = {}) {
       }
     }
 
-    const startTimeMs = Date.now()
-    let quickMigrationSuccess
-    try {
-      quickMigrationSuccess = await quickMigration(projectId, direction)
-      if (!quickMigrationSuccess) {
-        if (quickOnly) {
-          logger.info(
-            { projectId, direction },
-            'Quick migration failed, skipping project'
-          )
-        } else {
-          await migrateProject(projectId, direction)
-        }
-      }
-    } catch (err) {
-      logger.error(
-        { err, projectId, direction, projectsProcessed },
-        'Failed to migrate history ranges support'
-      )
-      projectsProcessed += 1
-      if (stopOnError) {
-        break
-      } else {
-        continue
-      }
+    if (jobsByProjectId.size >= concurrency) {
+      // Wait until the next job finishes
+      await Promise.race(jobsByProjectId.values())
     }
-    const elapsedMs = Date.now() - startTimeMs
-    projectsProcessed += 1
-    logger.info(
-      {
-        projectId,
-        direction,
-        projectsProcessed,
-        elapsedMs,
-        quick: quickMigrationSuccess,
-      },
-      'Migrated history ranges support'
-    )
+
+    const job = processProject(projectId, direction, quickOnly)
+      .then(info => {
+        jobsByProjectId.delete(projectId)
+        projectsProcessed[info.migrationType] += 1
+        projectsProcessed.total += 1
+        logger.debug(
+          {
+            projectId,
+            direction,
+            projectsProcessed,
+            errors,
+            ...info,
+          },
+          'History ranges support migration'
+        )
+        if (projectsProcessed.total % 10000 === 0) {
+          logger.info(
+            { projectsProcessed, errors, lastProjectId: projectId },
+            'History ranges support migration progress'
+          )
+        }
+      })
+      .catch(err => {
+        jobsByProjectId.delete(projectId)
+        errors += 1
+        logger.error(
+          { err, projectId, direction, projectsProcessed, errors },
+          'Failed to migrate history ranges support'
+        )
+      })
+
+    jobsByProjectId.set(projectId, job)
   }
+
+  // Let the last jobs finish
+  await Promise.all(jobsByProjectId.values())
+}
+
+/**
+ * Migrate a single project
+ *
+ * @param {string} projectId
+ * @param {"forwards" | "backwards"} direction
+ * @param {boolean} quickOnly
+ */
+async function processProject(projectId, direction, quickOnly) {
+  const startTimeMs = Date.now()
+  const quickMigrationSuccess = await quickMigration(projectId, direction)
+  let migrationType
+  if (quickMigrationSuccess) {
+    migrationType = 'quick'
+  } else if (quickOnly) {
+    migrationType = 'skipped'
+  } else {
+    await migrateProject(projectId, direction)
+    migrationType = 'resync'
+  }
+  const elapsedMs = Date.now() - startTimeMs
+  return { migrationType, elapsedMs }
 }
 
 /**
@@ -141,8 +201,12 @@ async function quickMigration(projectId, direction = 'forwards') {
     projectHasRanges =
       await DocstoreManager.promises.projectHasRanges(projectId)
   } catch (err) {
-    await DocumentUpdaterHandler.promises.unblockProject(projectId)
-    throw err
+    // Docstore request probably timed out. Assume the project has ranges
+    logger.warn(
+      { err, projectId },
+      'Failed to check if project has ranges; proceeding with a resync migration'
+    )
+    projectHasRanges = true
   }
   if (projectHasRanges) {
     await DocumentUpdaterHandler.promises.unblockProject(projectId)

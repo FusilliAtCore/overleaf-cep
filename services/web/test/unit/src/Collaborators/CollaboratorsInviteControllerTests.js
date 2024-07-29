@@ -84,7 +84,7 @@ describe('CollaboratorsInviteController', function () {
         getAllInvites: sinon.stub(),
         inviteToProject: sinon.stub().resolves(this.invite),
         getInviteByToken: sinon.stub().resolves(this.invite),
-        resendInvite: sinon.stub().resolves(this.invite),
+        generateNewInvite: sinon.stub().resolves(this.invite),
         revokeInvite: sinon.stub().resolves(this.invite),
         acceptInvite: sinon.stub(),
       },
@@ -1257,7 +1257,7 @@ describe('CollaboratorsInviteController', function () {
     })
   })
 
-  describe('resendInvite', function () {
+  describe('generateNewInvite', function () {
     beforeEach(function () {
       this.req.params = {
         Project_id: this.projectId,
@@ -1268,54 +1268,89 @@ describe('CollaboratorsInviteController', function () {
         .resolves(true)
     })
 
-    describe('when resendInvite does not produce an error', function () {
-      beforeEach(function (done) {
-        this.res.callback = () => done()
-        this.CollaboratorsInviteController.resendInvite(
-          this.req,
-          this.res,
-          this.next
-        )
+    describe('when generateNewInvite does not produce an error', function () {
+      describe('and returns an invite object', function () {
+        beforeEach(function (done) {
+          this.res.callback = () => done()
+          this.CollaboratorsInviteController.generateNewInvite(
+            this.req,
+            this.res,
+            this.next
+          )
+        })
+
+        it('should produce a 201 response', function () {
+          this.res.sendStatus.callCount.should.equal(1)
+          this.res.sendStatus.calledWith(201).should.equal(true)
+        })
+
+        it('should have called generateNewInvite', function () {
+          this.CollaboratorsInviteHandler.promises.generateNewInvite.callCount.should.equal(
+            1
+          )
+        })
+
+        it('should have called emitToRoom', function () {
+          this.EditorRealTimeController.emitToRoom.callCount.should.equal(1)
+          this.EditorRealTimeController.emitToRoom
+            .calledWith(this.projectId, 'project:membership:changed')
+            .should.equal(true)
+        })
+
+        it('should check the rate limit', function () {
+          this.CollaboratorsInviteController.promises._checkRateLimit.callCount.should.equal(
+            1
+          )
+        })
+
+        it('should add a project audit log entry', function () {
+          this.ProjectAuditLogHandler.addEntryInBackground.should.have.been.calledWith(
+            this.projectId,
+            'resend-invite',
+            this.currentUser._id,
+            this.req.ip,
+            {
+              inviteId: this.invite._id,
+              privileges: this.privileges,
+            }
+          )
+        })
       })
 
-      it('should produce a 201 response', function () {
-        this.res.sendStatus.callCount.should.equal(1)
-        this.res.sendStatus.calledWith(201).should.equal(true)
-      })
+      describe('and returns a null invite', function () {
+        beforeEach(function (done) {
+          this.CollaboratorsInviteHandler.promises.generateNewInvite.resolves(
+            null
+          )
+          this.res.callback = () => done()
+          this.CollaboratorsInviteController.generateNewInvite(
+            this.req,
+            this.res,
+            this.next
+          )
+        })
 
-      it('should have called resendInvite', function () {
-        this.CollaboratorsInviteHandler.promises.resendInvite.callCount.should.equal(
-          1
-        )
-      })
+        it('should have called emitToRoom', function () {
+          this.EditorRealTimeController.emitToRoom.callCount.should.equal(1)
+          this.EditorRealTimeController.emitToRoom
+            .calledWith(this.projectId, 'project:membership:changed')
+            .should.equal(true)
+        })
 
-      it('should check the rate limit', function () {
-        this.CollaboratorsInviteController.promises._checkRateLimit.callCount.should.equal(
-          1
-        )
-      })
-
-      it('should add a project audit log entry', function () {
-        this.ProjectAuditLogHandler.addEntryInBackground.should.have.been.calledWith(
-          this.projectId,
-          'resend-invite',
-          this.currentUser._id,
-          this.req.ip,
-          {
-            inviteId: this.invite._id,
-            privileges: this.privileges,
-          }
-        )
+        it('should produce a 404 response when invite is null', function () {
+          this.res.sendStatus.callCount.should.equal(1)
+          this.res.sendStatus.should.have.been.calledWith(404)
+        })
       })
     })
 
-    describe('when resendInvite produces an error', function () {
+    describe('when generateNewInvite produces an error', function () {
       beforeEach(function (done) {
-        this.CollaboratorsInviteHandler.promises.resendInvite.rejects(
+        this.CollaboratorsInviteHandler.promises.generateNewInvite.rejects(
           new Error('woops')
         )
         this.next.callsFake(() => done())
-        this.CollaboratorsInviteController.resendInvite(
+        this.CollaboratorsInviteController.generateNewInvite(
           this.req,
           this.res,
           this.next
@@ -1331,8 +1366,8 @@ describe('CollaboratorsInviteController', function () {
         this.next.calledWith(sinon.match.instanceOf(Error)).should.equal(true)
       })
 
-      it('should have called resendInvite', function () {
-        this.CollaboratorsInviteHandler.promises.resendInvite.callCount.should.equal(
+      it('should have called generateNewInvite', function () {
+        this.CollaboratorsInviteHandler.promises.generateNewInvite.callCount.should.equal(
           1
         )
       })

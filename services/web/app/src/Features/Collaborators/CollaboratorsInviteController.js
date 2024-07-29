@@ -220,7 +220,7 @@ const CollaboratorsInviteController = {
     res.sendStatus(204)
   },
 
-  async resendInvite(req, res) {
+  async generateNewInvite(req, res) {
     const projectId = req.params.Project_id
     const inviteId = req.params.invite_id
     const user = SessionManager.getSessionUser(req.session)
@@ -234,10 +234,16 @@ const CollaboratorsInviteController = {
       return res.sendStatus(429)
     }
 
-    const invite = await CollaboratorsInviteHandler.promises.resendInvite(
+    const invite = await CollaboratorsInviteHandler.promises.generateNewInvite(
       projectId,
       sendingUser,
       inviteId
+    )
+
+    EditorRealTimeController.emitToRoom(
+      projectId,
+      'project:membership:changed',
+      { invites: true }
     )
 
     if (invite != null) {
@@ -251,9 +257,11 @@ const CollaboratorsInviteController = {
           privileges: invite.privileges,
         }
       )
-    }
 
-    res.sendStatus(201)
+      res.sendStatus(201)
+    } else {
+      res.sendStatus(404)
+    }
   },
 
   async viewInvite(req, res) {
@@ -328,6 +336,7 @@ const CollaboratorsInviteController = {
     // finally render the invite
     res.render('project/invite/show', {
       invite,
+      token,
       project,
       owner,
       title: 'Project Invite',
@@ -394,7 +403,9 @@ module.exports = {
   getAllInvites: expressify(CollaboratorsInviteController.getAllInvites),
   inviteToProject: expressify(CollaboratorsInviteController.inviteToProject),
   revokeInvite: expressify(CollaboratorsInviteController.revokeInvite),
-  resendInvite: expressify(CollaboratorsInviteController.resendInvite),
+  generateNewInvite: expressify(
+    CollaboratorsInviteController.generateNewInvite
+  ),
   viewInvite: expressify(CollaboratorsInviteController.viewInvite),
   acceptInvite: expressify(CollaboratorsInviteController.acceptInvite),
   _checkShouldInviteEmail: callbackify(

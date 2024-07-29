@@ -397,6 +397,10 @@ lint: lint_eslint
 lint_eslint:
 	npm run lint
 
+lint: lint_stylelint
+lint_stylelint:
+	npm run lint:styles
+
 lint: lint_pug
 lint_pug:
 	bin/lint_pug_templates
@@ -492,10 +496,20 @@ build_webpack_once:
 		--file Dockerfile \
 		../..
 
+build_pug:
+	docker build \
+		--build-arg SENTRY_RELEASE \
+		--cache-from $(IMAGE_CI)-dev \
+		--tag $(IMAGE_CI)-pug \
+		--target pug \
+		--file Dockerfile \
+		../..
+
 build:
 	docker build \
 		--build-arg SENTRY_RELEASE \
 		--cache-from $(IMAGE_CI)-webpack \
+		--cache-from $(IMAGE_CI)-pug \
 		--cache-from $(IMAGE_REPO_FINAL) \
 		--tag $(IMAGE_REPO_FINAL) \
 		--target app \
@@ -503,7 +517,7 @@ build:
 		../..
 
 publish:
-	docker push $(DOCKER_REPO)/$(PROJECT_NAME):$(BRANCH_NAME)-$(BUILD_NUMBER)
+	docker push $(IMAGE_REPO_FINAL)
 
 tar:
 	COMPOSE_PROJECT_NAME=tar_$(BUILD_DIR_NAME) $(DOCKER_COMPOSE) run --rm tar
