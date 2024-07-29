@@ -132,7 +132,7 @@ const PreventTimeoutHelpMessage = memo(function PreventTimeoutHelpMessage({
     /* eslint-disable-next-line jsx-a11y/anchor-has-content, react/jsx-key */
     <a
       aria-label={t('read_more_about_free_compile_timeouts_servers')}
-      href="/blog/changes-to-free-compile-timeouts-and-servers"
+      href="blog/changes-to-free-compile-timeouts-and-servers"
       rel="noopener noreferrer"
       target="_blank"
       onClick={sendInfoClickEvent}
@@ -152,7 +152,7 @@ const PreventTimeoutHelpMessage = memo(function PreventTimeoutHelpMessage({
                 components={[
                   // eslint-disable-next-line jsx-a11y/anchor-has-content, react/jsx-key
                   <a
-                    href="/learn/how-to/Optimising_very_large_image_files"
+                    href="learn/how-to/Optimising_very_large_image_files"
                     rel="noopener noreferrer"
                     target="_blank"
                   />,
@@ -165,7 +165,7 @@ const PreventTimeoutHelpMessage = memo(function PreventTimeoutHelpMessage({
                 components={[
                   // eslint-disable-next-line jsx-a11y/anchor-has-content, react/jsx-key
                   <a
-                    href="/learn/how-to/Fixing_and_preventing_compile_timeouts#Step_3:_Assess_your_project_for_time-consuming_tasks_and_fatal_errors"
+                    href="learn/how-to/Fixing_and_preventing_compile_timeouts#Step_3:_Assess_your_project_for_time-consuming_tasks_and_fatal_errors"
                     rel="noopener noreferrer"
                     target="_blank"
                   />,
@@ -197,7 +197,7 @@ const PreventTimeoutHelpMessage = memo(function PreventTimeoutHelpMessage({
               components={[
                 // eslint-disable-next-line jsx-a11y/anchor-has-content, react/jsx-key
                 <a
-                  href="/learn/how-to/Fixing_and_preventing_compile_timeouts"
+                  href="learn/how-to/Fixing_and_preventing_compile_timeouts"
                   rel="noopener noreferrer"
                   target="_blank"
                 />,

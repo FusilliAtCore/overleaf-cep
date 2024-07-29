@@ -6,7 +6,7 @@ function NewsletterSection() {
   return (
     <>
       <h3>{t('newsletter')}</h3>
-      <a href="/user/email-preferences">{t('manage_newsletter')}</a>
+      <a href="user/email-preferences">{t('manage_newsletter')}</a>
     </>
   )
 }

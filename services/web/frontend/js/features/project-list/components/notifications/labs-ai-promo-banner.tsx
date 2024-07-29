@@ -52,7 +52,7 @@ function LabsAiPromoBanner() {
         action={
           <OLButton
             variant="secondary"
-            href="/labs/participate"
+            href="labs/participate"
             onClick={handleClick}
           >
             {t('try_now')}

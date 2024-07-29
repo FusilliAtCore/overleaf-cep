@@ -42,7 +42,7 @@ function CanOnlyLogInThroughSSO() {
         i18nKey="you_cant_add_or_change_password_due_to_sso"
         components={[
           // eslint-disable-next-line react/jsx-key, jsx-a11y/anchor-has-content
-          <a href="/learn/how-to/Logging_in_with_Group_single_sign-on" />,
+          <a href="learn/how-to/Logging_in_with_Group_single_sign-on" />,
         ]}
       />
     </p>
@@ -64,7 +64,7 @@ function PasswordInnerSection() {
   if (!hasPassword) {
     return (
       <p>
-        <a href="/user/password/reset" target="_blank">
+        <a href="user/password/reset" target="_blank">
           {t('no_existing_password')}
         </a>
       </p>

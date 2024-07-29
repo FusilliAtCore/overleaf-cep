@@ -104,7 +104,7 @@ export function AddSecondaryEmailPrompt() {
             bsStyle={null}
             disabled={isSubmitting}
             className="btn-secondary"
-            href="/project"
+            href="project"
           >
             {t('not_now')}
           </Button>
@@ -113,7 +113,7 @@ export function AddSecondaryEmailPrompt() {
               i18nKey="learn_more_about_account"
               components={[
                 // eslint-disable-next-line react/jsx-key, jsx-a11y/anchor-has-content
-                <a href="/learn/how-to/Keeping_your_account_secure" />,
+                <a href="learn/how-to/Keeping_your_account_secure" />,
               ]}
             />
           </p>
@@ -143,7 +143,7 @@ function ErrorMessage({ error }: { error: AddSecondaryEmailError }) {
           shouldUnescape
           tOptions={{ interpolation: { escapeValue: true } }}
           /* eslint-disable-next-line jsx-a11y/anchor-has-content, react/jsx-key */
-          components={[<a href="/account/settings" />]}
+          components={[<a href="account/settings" />]}
         />
       )
       break

@@ -11,7 +11,7 @@ import { createWorker } from '@/utils/worker'
 async function importPDFJS401() {
   const cMapUrl = '/js/pdfjs-dist401/cmaps/'
   const standardFontDataUrl = '/fonts/pdfjs-dist401/'
-  const imageResourcesPath = '/images/pdfjs-dist401/'
+  const imageResourcesPath = 'images/pdfjs-dist401/'
 
   // ensure that PDF.js is loaded before importing the viewer
   const PDFJS = await import('pdfjs-dist401/legacy/build/pdf')
@@ -39,7 +39,7 @@ async function importPDFJS401() {
 async function importPDFJS213() {
   const cMapUrl = '/js/pdfjs-dist213/cmaps/'
   const standardFontDataUrl = '/fonts/pdfjs-dist213/'
-  const imageResourcesPath = '/images/pdfjs-dist213/'
+  const imageResourcesPath = 'images/pdfjs-dist213/'
 
   // ensure that PDF.js is loaded before importing the viewer
   const PDFJS = await import('pdfjs-dist213/legacy/build/pdf')

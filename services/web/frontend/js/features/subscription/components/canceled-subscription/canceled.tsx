@@ -15,7 +15,7 @@ function Canceled() {
             <Alert bsStyle="info">
               <p>
                 {t('to_modify_your_subscription_go_to')}&nbsp;
-                <a href="/user/subscription" rel="noopener noreferrer">
+                <a href="user/subscription" rel="noopener noreferrer">
                   {t('manage_subscription')}.
                 </a>
               </p>
@@ -23,7 +23,7 @@ function Canceled() {
             <p>
               <a
                 className="btn btn-primary"
-                href="/project"
+                href="project"
                 rel="noopener noreferrer"
               >
                 &lt; {t('back_to_your_projects')}

@@ -19,7 +19,7 @@ function BetaProgramSection() {
           ? t('beta_program_already_participating')
           : t('beta_program_not_participating')}
       </p>
-      <a href="/beta/participate">{t('manage_beta_program_membership')}</a>
+      <a href="beta/participate">{t('manage_beta_program_membership')}</a>
     </>
   )
 }

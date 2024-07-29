@@ -120,7 +120,7 @@ function ActionButton({
     return (
       <OLButton
         variant="primary"
-        href="/user/subscription/plans"
+        href="user/subscription/plans"
         onClick={() => trackUpgradeClick(integration)}
       >
         <span className="text-capitalize">{t('upgrade')}</span>

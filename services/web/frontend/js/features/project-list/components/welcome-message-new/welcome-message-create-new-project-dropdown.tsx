@@ -41,7 +41,7 @@ const CustomDropdownToggle = forwardRef<
       <span>{t('create_a_new_project')}</span>
       <img
         className="welcome-message-card-img"
-        src="/img/welcome-page/create-a-new-project.svg"
+        src="img/welcome-page/create-a-new-project.svg"
         aria-hidden="true"
         alt=""
       />
@@ -136,7 +136,7 @@ function WelcomeMessageCreateNewProjectDropdown({
           <p>{t('create_a_new_project')}</p>
           <img
             className="welcome-message-card-img"
-            src="/img/welcome-page/create-a-new-project.svg"
+            src="img/welcome-page/create-a-new-project.svg"
             aria-hidden="true"
             alt=""
           />

@@ -56,7 +56,7 @@ export default function IEEERetirementBanner({
           i18nKey="notification_ieee_collabratec_retirement_message"
           components={[
             // eslint-disable-next-line jsx-a11y/anchor-has-content,react/jsx-key
-            <a href="/user/subscription" onClick={handleClickPlans} />,
+            <a href="user/subscription" onClick={handleClickPlans} />,
             // eslint-disable-next-line jsx-a11y/anchor-has-content,react/jsx-key
             <a href="mailto:authors@ieee.org" onClick={handleClickEmail} />,
           ]}

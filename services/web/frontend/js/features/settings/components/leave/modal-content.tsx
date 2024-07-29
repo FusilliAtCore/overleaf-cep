@@ -29,7 +29,7 @@ function LeaveModalContentBlock({
     return (
       <p>
         <b>
-          <a href="/user/password/reset">{t('delete_acct_no_existing_pw')}</a>
+          <a href="user/password/reset">{t('delete_acct_no_existing_pw')}</a>
         </b>
       </p>
     )

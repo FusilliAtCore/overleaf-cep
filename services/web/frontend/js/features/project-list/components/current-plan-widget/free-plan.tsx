@@ -36,7 +36,7 @@ function FreePlan({ featuresPageURL }: FreePlanProps) {
       <Button
         bsStyle="primary"
         className="hidden-xs"
-        href="/user/subscription/plans"
+        href="user/subscription/plans"
         onClick={handleClick}
       >
         {t('upgrade')}

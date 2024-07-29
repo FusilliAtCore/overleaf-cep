@@ -16,7 +16,7 @@ function BackToProjectsButton() {
         <a
           className="btn btn-full-height"
           draggable="false"
-          href="/project"
+          href="project"
           onClick={() => {
             eventTracking.sendMB('navigation-clicked-home')
           }}

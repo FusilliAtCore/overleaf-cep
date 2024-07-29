@@ -135,7 +135,7 @@ export function ManagersTable({
       <Row>
         <Col md={10} mdOffset={1}>
           <h1>
-            <a href="/user/subscription" className="back-btn">
+            <a href="user/subscription" className="back-btn">
               <MaterialIcon
                 type="arrow_back"
                 accessibilityLabel={t('back_to_subscription')}

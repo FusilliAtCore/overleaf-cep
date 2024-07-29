@@ -62,12 +62,12 @@ describe('<ManagedInstitutions />', function () {
 
     const links = screen.getAllByRole('link')
     expect(links[0].getAttribute('href')).to.equal('/metrics/institutions/123')
-    expect(links[1].getAttribute('href')).to.equal('/institutions/123/hub')
+    expect(links[1].getAttribute('href')).to.equal('institutions/123/hub')
     expect(links[2].getAttribute('href')).to.equal(
       '/manage/institutions/123/managers'
     )
     expect(links[3].getAttribute('href')).to.equal('/metrics/institutions/456')
-    expect(links[4].getAttribute('href')).to.equal('/institutions/456/hub')
+    expect(links[4].getAttribute('href')).to.equal('institutions/456/hub')
     expect(links[5].getAttribute('href')).to.equal(
       '/manage/institutions/456/managers'
     )
@@ -81,7 +81,7 @@ describe('<ManagedInstitutions />', function () {
 
   it('clicking unsubscribe should unsubscribe from metrics emails', async function () {
     window.metaAttributesCache.set('ol-managedInstitutions', [institution1])
-    const unsubscribeUrl = '/institutions/123/emailSubscription'
+    const unsubscribeUrl = 'institutions/123/emailSubscription'
 
     fetchMock.post(unsubscribeUrl, {
       status: 204,
@@ -107,7 +107,7 @@ describe('<ManagedInstitutions />', function () {
 
   it('clicking subscribe should subscribe to metrics emails', async function () {
     window.metaAttributesCache.set('ol-managedInstitutions', [institution2])
-    const subscribeUrl = '/institutions/456/emailSubscription'
+    const subscribeUrl = 'institutions/456/emailSubscription'
 
     fetchMock.post(subscribeUrl, {
       status: 204,

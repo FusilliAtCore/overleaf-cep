@@ -25,7 +25,7 @@ function ManagedGroupAdministrator({
         i18nKey="you_are_a_manager_and_member_of_x_plan_as_member_of_group_subscription_y_administered_by_z"
         components={[
           // eslint-disable-next-line react/jsx-key, jsx-a11y/anchor-has-content
-          <a href="/user/subscription/plans" />,
+          <a href="user/subscription/plans" />,
           // eslint-disable-next-line react/jsx-key
           <strong />,
         ]}
@@ -40,7 +40,7 @@ function ManagedGroupAdministrator({
         i18nKey="you_are_a_manager_and_member_of_x_plan_as_member_of_group_subscription_y_administered_by_z_you"
         components={[
           // eslint-disable-next-line react/jsx-key, jsx-a11y/anchor-has-content
-          <a href="/user/subscription/plans" />,
+          <a href="user/subscription/plans" />,
           // eslint-disable-next-line react/jsx-key
           <strong />,
         ]}
@@ -55,7 +55,7 @@ function ManagedGroupAdministrator({
         i18nKey="you_are_a_manager_of_x_plan_as_member_of_group_subscription_y_administered_by_z_you"
         components={[
           // eslint-disable-next-line react/jsx-key, jsx-a11y/anchor-has-content
-          <a href="/user/subscription/plans" />,
+          <a href="user/subscription/plans" />,
           // eslint-disable-next-line react/jsx-key
           <strong />,
         ]}
@@ -71,7 +71,7 @@ function ManagedGroupAdministrator({
       i18nKey="you_are_a_manager_of_x_plan_as_member_of_group_subscription_y_administered_by_z"
       components={[
         // eslint-disable-next-line react/jsx-key, jsx-a11y/anchor-has-content
-        <a href="/user/subscription/plans" />,
+        <a href="user/subscription/plans" />,
         // eslint-disable-next-line react/jsx-key
         <strong />,
       ]}

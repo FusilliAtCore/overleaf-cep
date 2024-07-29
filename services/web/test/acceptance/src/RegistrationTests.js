@@ -36,7 +36,7 @@ const tryLoginThroughRegistrationForm = function (
     }
     user.request.post(
       {
-        url: '/register',
+        url: 'register',
         json: {
           email,
           password,
@@ -219,7 +219,7 @@ describe('Registration', function () {
           expect(error).to.not.exist
           this.user.request.post(
             {
-              url: '/register',
+              url: 'register',
               json: {
                 email: this.email,
                 password: this.password,
@@ -245,7 +245,7 @@ describe('Registration', function () {
           expect(error).to.not.exist
           this.user.request.post(
             {
-              url: '/register',
+              url: 'register',
               json: {
                 email: this.email,
                 password: this.password,
@@ -274,7 +274,7 @@ describe('Registration', function () {
             expect(err).to.not.exist
             this.user.request.post(
               {
-                url: '/register',
+                url: 'register',
                 json: {
                   email: this.email,
                   password: this.password,

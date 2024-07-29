@@ -46,7 +46,7 @@ function SsoLinkingInfo({ domainInfo, email }: SSOLinkingInfoProps) {
           tOptions={{ interpolation: { escapeValue: true } }}
         />{' '}
         <a
-          href="/learn/how-to/Institutional_Login"
+          href="learn/how-to/Institutional_Login"
           target="_blank"
           rel="noopener noreferrer"
         >

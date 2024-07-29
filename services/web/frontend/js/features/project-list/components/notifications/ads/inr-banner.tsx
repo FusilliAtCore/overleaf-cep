@@ -89,7 +89,7 @@ export default function INRBanner() {
         <p>
           <img
             alt={t('inr_discount_modal_title')}
-            src="/img/subscriptions/inr-discount-modal.png"
+            src="img/subscriptions/inr-discount-modal.png"
             style={{
               width: '100%',
             }}

@@ -18,7 +18,7 @@ function LabsProgramSection() {
 
       <p className="small">{labsStatusText}</p>
 
-      <a href="/labs/participate">{labsRedirectText}</a>
+      <a href="labs/participate">{labsRedirectText}</a>
       <hr />
     </>
   )

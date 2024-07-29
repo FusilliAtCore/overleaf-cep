@@ -33,11 +33,11 @@ function UpgradeTrackChangesModal({
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <video className="teaser-video" autoPlay loop>
             <source
-              src="/img/teasers/track-changes/teaser-track-changes.mp4"
+              src="img/teasers/track-changes/teaser-track-changes.mp4"
               type="video/mp4"
             />
             <img
-              src="/img/teasers/track-changes/teaser-track-changes.gif"
+              src="img/teasers/track-changes/teaser-track-changes.gif"
               alt={t('demonstrating_track_changes_feature')}
             />
           </video>

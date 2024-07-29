@@ -364,7 +364,7 @@ describe('ProjectZipStreamManager', function () {
   describe('addAllFilesToArchive', function () {
     beforeEach(function () {
       this.files = {
-        '/image.png': {
+        'image.png': {
           _id: 'file-id-1',
         },
         '/folder/picture.png': {

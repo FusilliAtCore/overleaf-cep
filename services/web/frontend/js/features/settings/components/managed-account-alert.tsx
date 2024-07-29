@@ -30,7 +30,7 @@ export default function ManagedAccountAlert() {
             components={[
               // eslint-disable-next-line jsx-a11y/anchor-has-content, react/jsx-key
               <a
-                href="/learn/how-to/Understanding_Managed_Overleaf_Accounts"
+                href="learn/how-to/Understanding_Managed_Overleaf_Accounts"
                 target="_blank"
               />,
             ]}

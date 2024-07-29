@@ -21,7 +21,7 @@ export const V1ImportDataScreen: FC<{ v1ImportData: V1ImportData }> = ({
 
             <img
               className="v2-import__img"
-              src="/img/v1-import/v2-editor.png"
+              src="img/v1-import/v2-editor.png"
               alt="The new V2 editor."
             />
 
@@ -33,7 +33,7 @@ export const V1ImportDataScreen: FC<{ v1ImportData: V1ImportData }> = ({
 
                 <p className="text-center row-spaced-small">
                   Please contact the project owner or{' '}
-                  <a href="/contact">contact support</a> for assistance.
+                  <a href="contact">contact support</a> for assistance.
                 </p>
               </div>
             )}

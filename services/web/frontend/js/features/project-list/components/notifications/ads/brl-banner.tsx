@@ -91,7 +91,7 @@ export default function BRLBanner() {
         <p>
           <img
             alt={t('latam_discount_modal_title')}
-            src="/img/subscriptions/blr-discount-modal.png"
+            src="img/subscriptions/blr-discount-modal.png"
             style={{
               width: '100%',
             }}

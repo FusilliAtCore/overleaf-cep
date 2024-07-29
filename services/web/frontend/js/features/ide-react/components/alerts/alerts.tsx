@@ -49,7 +49,7 @@ export function Alerts() {
         <Alert bsStyle="warning" className="small">
           <strong>{t('synctex_failed')}</strong>
           <a
-            href="/learn/how-to/SyncTeX_Errors"
+            href="learn/how-to/SyncTeX_Errors"
             target="_blank"
             id="synctex-more-info-button"
             className="alert-link-as-btn pull-right"

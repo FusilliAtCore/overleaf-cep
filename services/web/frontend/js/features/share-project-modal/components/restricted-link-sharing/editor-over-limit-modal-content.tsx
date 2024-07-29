@@ -30,7 +30,7 @@ export default function EditorOverLimitModalContent({
         <Button
           bsStyle={null}
           className="btn-secondary"
-          href="/blog/changes-to-project-sharing"
+          href="blog/changes-to-project-sharing"
           target="_blank"
           rel="noreferrer"
           onClick={() => {

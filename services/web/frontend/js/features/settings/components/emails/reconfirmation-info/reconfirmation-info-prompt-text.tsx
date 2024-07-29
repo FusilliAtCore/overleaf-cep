@@ -37,7 +37,7 @@ function ReconfirmationInfoPromptText({
         }
       />{' '}
       <a
-        href="/learn/how-to/Institutional_Email_Reconfirmation"
+        href="learn/how-to/Institutional_Email_Reconfirmation"
         target="_blank"
       >
         {t('learn_more')}

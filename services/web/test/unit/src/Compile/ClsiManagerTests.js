@@ -31,7 +31,7 @@ describe('ClsiManager', function () {
       },
     }
     this.files = {
-      '/images/image.png': {
+      'images/image.png': {
         name: 'image.png',
         _id: 'mock-file-id-1',
         created: new Date(),

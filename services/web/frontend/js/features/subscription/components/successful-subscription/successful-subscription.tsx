@@ -42,7 +42,7 @@ function SuccessfulSubscription() {
               )}
               <p>
                 {t('to_modify_your_subscription_go_to')}&nbsp;
-                <a href="/user/subscription" rel="noopener noreferrer">
+                <a href="user/subscription" rel="noopener noreferrer">
                   {t('manage_subscription')}.
                 </a>
               </p>

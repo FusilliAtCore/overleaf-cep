@@ -50,7 +50,7 @@ describe('useAbortController', function () {
   it('calls then when the request succeeds', async function () {
     fetchMock.get('/test', { status: 204 }, { delay: 100 })
 
-    render(<AbortableRequest url="/test" />)
+    render(<AbortableRequest url="test" />)
 
     expect(status.loading).to.be.true
     await waitFor(() => expect(status.loading).to.be.false)
@@ -62,7 +62,7 @@ describe('useAbortController', function () {
   it('calls catch when the request fails', async function () {
     fetchMock.get('/test', { status: 500 }, { delay: 100 })
 
-    render(<AbortableRequest url="/test" />)
+    render(<AbortableRequest url="test" />)
 
     expect(status.loading).to.be.true
     await waitFor(() => expect(status.loading).to.be.false)
@@ -74,7 +74,7 @@ describe('useAbortController', function () {
   it('cancels a request when unmounted', async function () {
     fetchMock.get('/test', { status: 204 }, { delay: 100 })
 
-    const { unmount } = render(<AbortableRequest url="/test" />)
+    const { unmount } = render(<AbortableRequest url="test" />)
 
     expect(status.loading).to.be.true
 

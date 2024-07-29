@@ -61,7 +61,7 @@ block content
 												form(
 													data-ol-async-form
 													data-ol-register-admin
-													action="/launchpad/register_admin"
+													action="launchpad/register_admin"
 													method="POST"
 												)
 													input(name='_csrf', type='hidden', value=csrfToken)
@@ -102,7 +102,7 @@ block content
 												form(
 													data-ol-async-form
 													data-ol-register-admin
-													action="/launchpad/register_ldap_admin"
+													action="launchpad/register_ldap_admin"
 													method="POST"
 												)
 													input(name='_csrf', type='hidden', value=csrfToken)
@@ -132,7 +132,7 @@ block content
 												form(
 													data-ol-async-form
 													data-ol-register-admin
-													action="/launchpad/register_admin"
+													action="launchpad/register_admin"
 													method="POST"
 												)
 													input(name='_csrf', type='hidden', value=csrfToken)
@@ -173,7 +173,7 @@ block content
 												form(
 													data-ol-async-form
 													data-ol-register-admin
-													action="/launchpad/register_saml_admin"
+													action="launchpad/register_saml_admin"
 													method="POST"
 												)
 													input(name='_csrf', type='hidden', value=csrfToken)
@@ -230,7 +230,7 @@ block content
 											h3 #{translate('send_test_email')}
 											form.form(
 												data-ol-async-form
-												action="/launchpad/send_test_email"
+												action="launchpad/send_test_email"
 												method="POST"
 											)
 												.form-group
@@ -263,9 +263,9 @@ block content
 											.text-center
 												br
 												p
-													a(href="/admin").btn.btn-info
+													a(href="admin").btn.btn-info
 														| Go To Admin Panel
 												p
-													a(href="/project").btn.btn-primary
+													a(href="project").btn.btn-primary
 														| Start Using #{settings.appName}
 												br

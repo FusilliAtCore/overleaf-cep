@@ -92,7 +92,7 @@ describe('FileSystemImportManager', function () {
     it('should import binary files', function () {
       expect(this.entries).to.deep.include({
         type: 'file',
-        projectPath: '/images/cat.jpg',
+        projectPath: 'images/cat.jpg',
         fsPath: 'import-test/images/cat.jpg',
       })
     })

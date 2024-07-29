@@ -474,7 +474,7 @@ class User {
       }
       this.request.post(
         {
-          url: '/logout',
+          url: 'logout',
         },
         (error, response, body) => {
           if (error != null) {

@@ -34,7 +34,7 @@ function AddAffiliation({ className }: AddAffiliationProps) {
       <Button
         bsStyle={null}
         className="btn-secondary-info btn-secondary"
-        href="/user/settings"
+        href="user/settings"
       >
         {t('add_affiliation')}
       </Button>

@@ -155,7 +155,7 @@ async function renderSetPasswordForm(req, res, next) {
 
       const { user, remainingPeeks } = result || {}
       if (!user || remainingPeeks <= 0) {
-        return res.redirect('/user/password/reset?error=token_expired')
+        return res.redirect('user/password/reset?error=token_expired')
       }
       req.session.resetToken = req.query.passwordResetToken
       let emailQuery = ''
@@ -167,17 +167,17 @@ async function renderSetPasswordForm(req, res, next) {
         }
       }
 
-      return res.redirect('/user/password/set' + emailQuery)
+      return res.redirect('user/password/set' + emailQuery)
     } catch (err) {
       if (err.name === 'ForbiddenError') {
         return next(err)
       }
-      return res.redirect('/user/password/reset?error=token_expired')
+      return res.redirect('user/password/reset?error=token_expired')
     }
   }
 
   if (req.session.resetToken == null) {
-    return res.redirect('/user/password/reset')
+    return res.redirect('user/password/reset')
   }
 
   const email = EmailsHelper.parseEmail(req.query.email)

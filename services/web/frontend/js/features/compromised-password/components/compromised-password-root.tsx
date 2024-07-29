@@ -31,7 +31,7 @@ export function CompromisedPasswordCard() {
         />
       </p>
 
-      <Button className="btn-primary" href="/user/settings">
+      <Button className="btn-primary" href="user/settings">
         {t('change_password_in_account_settings')}
       </Button>
     </Interstitial>

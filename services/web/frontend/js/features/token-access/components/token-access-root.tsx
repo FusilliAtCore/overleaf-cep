@@ -108,7 +108,7 @@ function TokenAccessRoot() {
     <div className="full-size">
       <div>
         <a
-          href="/project"
+          href="project"
           // TODO: class name
           style={{ fontSize: '2rem', marginLeft: '1rem', color: '#ddd' }}
         >

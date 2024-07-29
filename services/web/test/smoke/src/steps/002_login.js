@@ -23,7 +23,7 @@ async function run({ assertHasStatusCode, loginCsrfToken, request }) {
 
 async function cleanup({ assertHasStatusCode, getCsrfTokenFor, request }) {
   const logoutCsrfToken = await getCsrfTokenFor('/project')
-  const response = await request('/logout', {
+  const response = await request('logout', {
     method: 'POST',
     headers: {
       'X-CSRF-Token': logoutCsrfToken,

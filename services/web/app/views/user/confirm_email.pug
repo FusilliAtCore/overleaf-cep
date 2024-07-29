@@ -10,7 +10,7 @@ block content
 							h1 #{translate("confirm_email")}
 						form(
 							method="POST"
-							action="/logout"
+							action="logout"
 							id="logoutForm"
 						)
 							input(type="hidden", name="_csrf", value=csrfToken)
@@ -19,7 +19,7 @@ block content
 							data-ol-async-form,
 							data-ol-auto-submit,
 							name="confirmEmailForm"
-							action="/user/emails/confirm",
+							action="user/emails/confirm",
 							method="POST",
 							id="confirmEmailForm",
 						)
@@ -53,5 +53,5 @@ block content
 								.alert.alert-success
 									| #{translate('thank_you_email_confirmed')}
 								div.text-center
-									a.btn.btn-primary(href="/user/settings")
+									a.btn.btn-primary(href="user/settings")
 										| #{translate('go_to_account_settings')}

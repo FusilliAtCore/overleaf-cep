@@ -506,7 +506,7 @@ async function primaryEmailCheck(req, res) {
       )?.[0]
 
       if (institution) {
-        return AsyncFormHelper.redirect(req, res, '/user/emails/add-secondary')
+        return AsyncFormHelper.redirect(req, res, 'user/emails/add-secondary')
       }
     }
   }

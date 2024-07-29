@@ -9,8 +9,8 @@ describe('<SSOLinkingWidget />', function () {
     providerId: 'integration_id',
     title: 'integration',
     description: 'integration description',
-    helpPath: '/help/integration',
-    linkPath: '/integration/link',
+    helpPath: 'help/integration',
+    linkPath: 'integration/link',
     onUnlink: () => Promise.resolve(),
   }
 
@@ -20,7 +20,7 @@ describe('<SSOLinkingWidget />', function () {
     screen.getByText('integration description')
     expect(
       screen.getByRole('link', { name: 'Learn more' }).getAttribute('href')
-    ).to.equal('/help/integration')
+    ).to.equal('help/integration')
   })
 
   describe('when unlinked', function () {
@@ -28,7 +28,7 @@ describe('<SSOLinkingWidget />', function () {
       render(<SSOLinkingWidget {...defaultProps} linked={false} />)
       expect(
         screen.getByRole('link', { name: 'Link' }).getAttribute('href')
-      ).to.equal('/integration/link?intent=link')
+      ).to.equal('integration/link?intent=link')
     })
   })
 

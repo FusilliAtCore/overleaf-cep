@@ -150,7 +150,7 @@ module.exports = function (webRouter, privateApiRouter, publicApiRouter) {
     if (cdnAvailable && !isSmoke && !cdnBlocked) {
       staticFilesBase = Settings.cdn.web.host
     } else {
-      staticFilesBase = ''
+      staticFilesBase = (req.get('X-Script-Name') || '')
     }
 
     res.locals.buildBaseAssetPath = function () {
@@ -185,7 +185,7 @@ module.exports = function (webRouter, privateApiRouter, publicApiRouter) {
       return chunks.map(chunk => staticFilesBase + chunk)
     }
 
-    res.locals.mathJaxPath = `/js/libs/mathjax-${PackageVersions.version.mathjax}/es5/tex-svg-full.js`
+    res.locals.mathJaxPath = Path.join(req.get('X-Script-Name') || '', `/js/libs/mathjax-${PackageVersions.version.mathjax}/es5/tex-svg-full.js`)
 
     res.locals.lib = PackageVersions.lib
 
@@ -229,7 +229,7 @@ module.exports = function (webRouter, privateApiRouter, publicApiRouter) {
     }
 
     res.locals.buildImgPath = function (imgFile) {
-      const path = Path.join('/img/', imgFile)
+      const path = Path.join(req.get('X-Script-Name') || '', 'img/', imgFile)
       return staticFilesBase + path
     }
 
@@ -342,6 +342,11 @@ module.exports = function (webRouter, privateApiRouter, publicApiRouter) {
 
   webRouter.use(function (req, res, next) {
     res.locals.settings = Settings
+    next()
+  })
+
+  webRouter.use(function (req, res, next) {
+    res.locals.base_path = Path.join(req.get('X-Script-Name') || '', '/')
     next()
   })
 

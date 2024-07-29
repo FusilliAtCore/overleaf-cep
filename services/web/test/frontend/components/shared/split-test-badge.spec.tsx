@@ -27,7 +27,7 @@ describe('split test badge', function () {
       </EditorProviders>
     )
 
-    cy.get('a.badge.alpha-badge[href="/alpha/participate"]').contains(
+    cy.get('a.badge.alpha-badge[href="alpha/participate"]').contains(
       'This is an alpha feature'
     )
   })
@@ -85,7 +85,7 @@ describe('split test badge', function () {
       </EditorProviders>
     )
 
-    cy.get('a.badge.beta-badge[href="/beta/participate"]').contains(
+    cy.get('a.badge.beta-badge[href="beta/participate"]').contains(
       'This is a beta feature'
     )
   })
@@ -143,7 +143,7 @@ describe('split test badge', function () {
       </EditorProviders>
     )
 
-    cy.get('a.badge.info-badge[href="/feedback/form"]').contains(
+    cy.get('a.badge.info-badge[href="feedback/form"]').contains(
       'This is a new feature'
     )
   })
@@ -217,7 +217,7 @@ describe('split test badge', function () {
       </EditorProviders>
     )
 
-    cy.get('a.badge.info-badge[href="/beta/participate"]')
+    cy.get('a.badge.info-badge[href="beta/participate"]')
       .contains('We are testing this new feature.')
       .contains('Click to give feedback')
   })

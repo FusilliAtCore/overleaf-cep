@@ -6,7 +6,7 @@ mixin linkAdvisors(linkText, linkClass, track)
 	- var mb = track && track.mb ? 'true' : null
 	- var mbSegmentation = track && track.segmentation ? track.segmentation : null
 	- var trigger = track && track.trigger ? track.trigger : null
-	a(href="/advisors" 
+	a(href="advisors" 
 		class=linkClass ? linkClass : ''
 		event-tracking-ga=gaCategory
 		event-tracking=gaAction
@@ -31,7 +31,7 @@ mixin linkContact(linkText, linkClass)
 		| #{linkText ? linkText : 'contact'}
 
 mixin linkDash(linkText, linkClass)
-	a(href="/project" class=linkClass ? linkClass : '')
+	a(href="project" class=linkClass ? linkClass : '')
 		| #{linkText ? linkText : 'project dashboard'}
 
 mixin linkEducation(linkText, linkClass)
@@ -46,7 +46,7 @@ mixin linkInvite(linkText, linkClass, track)
 	- var mbSegmentation = track && track.segmentation ? track.segmentation : null
 	- var trigger = track && track.trigger ? track.trigger : null
 
-	a(href="/user/bonus"
+	a(href="user/bonus"
 		class=linkClass ? linkClass : ''
 		event-tracking-ga=gaCategory
 		event-tracking=gaAction
@@ -58,7 +58,7 @@ mixin linkInvite(linkText, linkClass, track)
 		span #{linkText ? linkText : 'invite your friends'}
 
 mixin linkPlansAndPricing(linkText, linkClass)
-	a(href="/user/subscription/plans" class=linkClass ? linkClass : '')
+	a(href="user/subscription/plans" class=linkClass ? linkClass : '')
 		| #{linkText ? linkText : 'plans and pricing'}
 
 mixin linkPrintNewTab(linkText, linkClass, icon, track)

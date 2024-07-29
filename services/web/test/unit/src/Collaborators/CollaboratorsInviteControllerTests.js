@@ -884,7 +884,7 @@ describe('CollaboratorsInviteController', function () {
       it('should redirect to the register page', function () {
         expect(this.res.render).to.not.have.been.called
         expect(this.res.redirect).to.have.been.calledOnce
-        expect(this.res.redirect).to.have.been.calledWith('/register')
+        expect(this.res.redirect).to.have.been.calledWith('register')
       })
     })
 

@@ -262,7 +262,7 @@ describe('FileTypeManager', function () {
         '/file.eps',
         '/file.dvi',
         '/file.png',
-        '/images/file.png',
+        'images/file.png',
         '/tex',
       ]
       BINARY_FILENAMES.forEach(filename => {

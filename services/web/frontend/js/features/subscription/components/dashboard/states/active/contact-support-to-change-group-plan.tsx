@@ -7,7 +7,7 @@ export function ContactSupportToChangeGroupPlan() {
         i18nKey="contact_support_to_change_group_subscription"
         components={[
           // eslint-disable-next-line react/jsx-key, jsx-a11y/anchor-has-content
-          <a href="/contact" />,
+          <a href="contact" />,
         ]}
       />
     </p>

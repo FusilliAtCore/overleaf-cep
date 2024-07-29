@@ -44,7 +44,7 @@ function OutOfSyncModal({ editorContent, show, onHide }: OutOfSyncModalProps) {
             <a
               target="_blank"
               rel="noopener noreferrer"
-              href="/learn/Kb/Editor_out_of_sync_problems"
+              href="learn/Kb/Editor_out_of_sync_problems"
             />,
           ]}
         />

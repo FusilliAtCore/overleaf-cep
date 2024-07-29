@@ -150,7 +150,7 @@ describe('admin panel', function () {
       it('transfer project ownership', () => {
         cy.log("access project admin through owners' project list")
         cy.get('[role="tab"]').contains('Projects').click()
-        cy.get(`a[href="/admin/project/${testProjectId}"]`).click()
+        cy.get(`a[href="admin/project/${testProjectId}"]`).click()
 
         cy.findByText('Transfer Ownership').click()
         cy.get('button[type="submit"]').should('be.disabled')
@@ -164,7 +164,7 @@ describe('admin panel', function () {
         cy.get('input[name="email"]').type(user2 + '{enter}')
         cy.findByText(user2).click()
         cy.get('[role="tab"]').contains('Projects').click()
-        cy.get(`a[href="/admin/project/${testProjectId}"]`)
+        cy.get(`a[href="admin/project/${testProjectId}"]`)
       })
     })
 

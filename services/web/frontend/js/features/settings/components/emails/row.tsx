@@ -139,7 +139,7 @@ function SSOAffiliationInfo({ userEmailData }: SSOAffiliationInfoProps) {
                     [<strong />]
                   }
                 />{' '}
-                <a href="/learn/how-to/Institutional_Login" target="_blank">
+                <a href="learn/how-to/Institutional_Login" target="_blank">
                   {t('find_out_more_about_institution_login')}
                 </a>
               </p>

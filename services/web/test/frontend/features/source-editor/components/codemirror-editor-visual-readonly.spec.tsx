@@ -15,7 +15,7 @@ const FileTreePathProvider: FC = ({ children }) => (
       previewByPath: cy
         .stub()
         .as('previewByPath')
-        .returns({ url: '/images/frog.jpg', extension: 'jpg' }),
+        .returns({ url: 'images/frog.jpg', extension: 'jpg' }),
     }}
   >
     {children}
@@ -113,7 +113,7 @@ describe('<CodeMirrorEditor/> in Visual mode with read-only permission', functio
   })
 
   it('does not display the figure edit button', function () {
-    cy.intercept('/images/frog.jpg', { fixture: 'images/gradient.png' })
+    cy.intercept('images/frog.jpg', { fixture: 'images/gradient.png' })
 
     mountEditor(
       `\\begin{figure}

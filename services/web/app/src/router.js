@@ -251,13 +251,13 @@ function initialize(webRouter, privateApiRouter, publicApiRouter) {
     '/read-only/one-time-login'
   )
 
-  webRouter.post('/logout', UserController.logout)
+  webRouter.post('logout', UserController.logout)
 
   webRouter.get('/restricted', AuthorizationMiddleware.restricted)
 
   if (Features.hasFeature('registration-page')) {
-    webRouter.get('/register', UserPagesController.registerPage)
-    AuthenticationController.addEndpointToLoginWhitelist('/register')
+    webRouter.get('register', UserPagesController.registerPage)
+    AuthenticationController.addEndpointToLoginWhitelist('register')
   }
 
   EditorRouter.apply(webRouter, privateApiRouter)
@@ -861,22 +861,22 @@ function initialize(webRouter, privateApiRouter, publicApiRouter) {
     MetaController.broadcastMetadataForDoc
   )
   privateApiRouter.post(
-    '/internal/expire-deleted-projects-after-duration',
+    'internal/expire-deleted-projects-after-duration',
     AuthenticationController.requirePrivateApiAuth(),
     ProjectController.expireDeletedProjectsAfterDuration
   )
   privateApiRouter.post(
-    '/internal/expire-deleted-users-after-duration',
+    'internal/expire-deleted-users-after-duration',
     AuthenticationController.requirePrivateApiAuth(),
     UserController.expireDeletedUsersAfterDuration
   )
   privateApiRouter.post(
-    '/internal/project/:projectId/expire-deleted-project',
+    'internal/project/:projectId/expire-deleted-project',
     AuthenticationController.requirePrivateApiAuth(),
     ProjectController.expireDeletedProject
   )
   privateApiRouter.post(
-    '/internal/users/:userId/expire',
+    'internal/users/:userId/expire',
     AuthenticationController.requirePrivateApiAuth(),
     UserController.expireDeletedUser
   )
@@ -987,28 +987,28 @@ function initialize(webRouter, privateApiRouter, publicApiRouter) {
 
   // New 'stable' /internal API end points
   privateApiRouter.get(
-    '/internal/project/:project_id',
+    'internal/project/:project_id',
     AuthenticationController.requirePrivateApiAuth(),
     ProjectApiController.getProjectDetails
   )
   privateApiRouter.get(
-    '/internal/project/:Project_id/zip',
+    'internal/project/:Project_id/zip',
     AuthenticationController.requirePrivateApiAuth(),
     ProjectDownloadsController.downloadProject
   )
   privateApiRouter.get(
-    '/internal/project/:project_id/compile/pdf',
+    'internal/project/:project_id/compile/pdf',
     AuthenticationController.requirePrivateApiAuth(),
     CompileController.compileAndDownloadPdf
   )
 
   privateApiRouter.post(
-    '/internal/deactivateOldProjects',
+    'internal/deactivateOldProjects',
     AuthenticationController.requirePrivateApiAuth(),
     InactiveProjectController.deactivateOldProjects
   )
   privateApiRouter.post(
-    '/internal/project/:project_id/deactivate',
+    'internal/project/:project_id/deactivate',
     AuthenticationController.requirePrivateApiAuth(),
     InactiveProjectController.deactivateProject
   )
@@ -1178,7 +1178,7 @@ function initialize(webRouter, privateApiRouter, publicApiRouter) {
     if (SessionManager.isUserLoggedIn(req.session)) {
       res.redirect('/project')
     } else {
-      res.redirect('/register')
+      res.redirect('register')
     }
   })
 

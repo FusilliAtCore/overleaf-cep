@@ -190,7 +190,7 @@ class UserHelper {
    */
   async logout(options = {}) {
     // post logout
-    const response = await this.fetch('/logout', { method: 'POST', ...options })
+    const response = await this.fetch('logout', { method: 'POST', ...options })
     if (
       response.status !== 302 ||
       !response.headers.get('location').includes('/login')
@@ -375,7 +375,7 @@ class UserHelper {
     const userHelper = new UserHelper()
     await userHelper.getCsrfToken()
     userData = userHelper.getDefaultEmailPassword(userData)
-    const response = await userHelper.fetch('/register', {
+    const response = await userHelper.fetch('register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

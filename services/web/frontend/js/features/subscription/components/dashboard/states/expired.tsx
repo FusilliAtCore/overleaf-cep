@@ -20,7 +20,7 @@ export function ExpiredSubscription({
         >
           {t('view_your_invoices')}
         </a>{' '}
-        <a href="/user/subscription/plans" className="btn btn-primary">
+        <a href="user/subscription/plans" className="btn btn-primary">
           {t('create_new_subscription')}
         </a>
       </p>

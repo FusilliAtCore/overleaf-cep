@@ -6,6 +6,7 @@ const UserUpdater = require('../User/UserUpdater')
 const Metrics = require('@overleaf/metrics')
 const logger = require('@overleaf/logger')
 const querystring = require('querystring')
+const Path = require("path")
 const Settings = require('@overleaf/settings')
 const basicAuth = require('basic-auth')
 const tsscmp = require('tsscmp')
@@ -138,11 +139,11 @@ const AuthenticationController = {
 
   async _finishLoginAsync(user, req, res) {
     if (user === false) {
-      return AsyncFormHelper.redirect(req, res, '/login')
+      return AsyncFormHelper.redirect(req, res, 'login')
     } // OAuth2 'state' mismatch
 
     if (user.suspended) {
-      return AsyncFormHelper.redirect(req, res, '/account-suspended')
+      return AsyncFormHelper.redirect(req, res, 'account-suspended')
     }
 
     if (Settings.adminOnlyLogin && !hasAdminAccess(user)) {
@@ -172,7 +173,7 @@ const AuthenticationController = {
     }
 
     const redir =
-      AuthenticationController.getRedirectFromSession(req) || '/project'
+      AuthenticationController.getRedirectFromSession(req) || 'project'
 
     _loginAsyncHandlers(req, user, anonymousAnalyticsId, isNewUser)
     const userId = user._id
@@ -427,7 +428,7 @@ const AuthenticationController = {
       )
       if (acceptsJson(req)) return send401WithChallenge(res)
       AuthenticationController.setRedirectInSession(req)
-      res.redirect('/login')
+      res.redirect('login')
     }
   },
 
@@ -509,7 +510,7 @@ const AuthenticationController = {
       !/^.*\.(png|jpeg|svg)$/.test(value)
     ) {
       const safePath = UrlHelper.getSafeRedirectPath(value)
-      return (req.session.postLoginRedirect = safePath)
+      return (req.session.postLoginRedirect = Path.join(req.get('X-Script-Name') || '', safePath))
     }
   },
 
@@ -517,7 +518,7 @@ const AuthenticationController = {
     if (
       req.query.zipUrl != null ||
       req.session.sharedProjectData ||
-      req.path === '/user/subscription/new'
+      req.path === 'user/subscription/new'
     ) {
       AuthenticationController._redirectToRegisterPage(req, res)
     } else {
@@ -531,7 +532,7 @@ const AuthenticationController = {
       'user not logged in so redirecting to login page'
     )
     AuthenticationController.setRedirectInSession(req)
-    const url = `/login?${querystring.stringify(req.query)}`
+    const url = `login?${querystring.stringify(req.query)}`
     res.redirect(url)
     Metrics.inc('security.login-redirect')
   },
@@ -542,7 +543,7 @@ const AuthenticationController = {
       'user needs to reconfirm so redirecting to reconfirm page'
     )
     req.session.reconfirm_email = user != null ? user.email : undefined
-    const redir = '/user/reconfirm'
+    const redir = 'user/reconfirm'
     AsyncFormHelper.redirect(req, res, redir)
   },
 

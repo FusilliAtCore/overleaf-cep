@@ -1,7 +1,7 @@
 mixin reconfirmAffiliationNotification-marketing(userEmail, location)
 	form(
 		data-ol-async-form
-		action='/user/emails/send-reconfirmation'
+		action='user/emails/send-reconfirmation'
 	)
 		input(name="_csrf" type="hidden" value=csrfToken)
 		input(name="email" type="hidden" value=userEmail.email)
@@ -36,10 +36,10 @@ mixin reconfirmAffiliationNotification-marketing(userEmail, location)
 					if userEmail.default
 						span &nbsp;#{translate('need_to_add_new_primary_before_remove')}
 				else
-					| !{translate("please_reconfirm_institutional_email", {}, [{name: 'a', attrs: {href: '/user/settings?remove=' + userEmail.email}}])}
+					| !{translate("please_reconfirm_institutional_email", {}, [{name: 'a', attrs: {href: 'user/settings?remove=' + userEmail.email}}])}
 
 				| &nbsp;
-				a(href="/learn/how-to/Institutional_Email_Reconfirmation" target="_blank") #{translate("learn_more")}
+				a(href="learn/how-to/Institutional_Email_Reconfirmation" target="_blank") #{translate("learn_more")}
 
 			div(hidden data-ol-sent)
 				| !{translate("please_check_your_inbox_to_confirm", {institutionName: userEmail.affiliation.institution.name}, ['strong'])}

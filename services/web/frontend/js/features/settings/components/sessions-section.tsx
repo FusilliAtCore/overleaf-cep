@@ -6,7 +6,7 @@ function SessionsSection() {
   return (
     <>
       <h3>{t('sessions')}</h3>
-      <a href="/user/sessions">{t('manage_sessions')}</a>
+      <a href="user/sessions">{t('manage_sessions')}</a>
     </>
   )
 }

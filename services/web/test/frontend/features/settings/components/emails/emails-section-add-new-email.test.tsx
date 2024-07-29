@@ -294,7 +294,7 @@ describe('<EmailsSection />', function () {
 
     expect(universityInput.disabled).to.be.true
 
-    fetchMock.get('/institutions/list?country_code=de', [
+    fetchMock.get('institutions/list?country_code=de', [
       {
         id: userEmailData.affiliation.institution.id,
         name: userEmailData.affiliation.institution.name,
@@ -375,7 +375,7 @@ describe('<EmailsSection />', function () {
     await fetchMock.flush(true)
     resetFetchMock()
 
-    fetchMock.get('/institutions/list?country_code=de', [
+    fetchMock.get('institutions/list?country_code=de', [
       {
         id: 1,
         name: 'University of Bonn',

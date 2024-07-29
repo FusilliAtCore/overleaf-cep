@@ -26,7 +26,7 @@ describe('<Notification />', function () {
       <Notification
         type="info"
         content={<p>A notification</p>}
-        action={<a href="/">Action</a>}
+        action={<a href="">Action</a>}
       />
     )
     screen.getByText('A notification')

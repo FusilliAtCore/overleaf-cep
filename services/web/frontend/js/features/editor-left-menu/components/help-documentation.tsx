@@ -8,7 +8,7 @@ export default function HelpDocumentation() {
     <>
       <LeftMenuButton
         type="link"
-        href="/learn"
+        href="learn"
         icon={{
           type: 'book',
           fw: true,

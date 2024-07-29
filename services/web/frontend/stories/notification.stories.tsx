@@ -69,7 +69,7 @@ export const NotificationWithMultipleParagraphsAndActionAndDismissible = (
           </p>
           <p>
             Dolor sit amet, consectetur adipiscing elit. Proin lacus velit,
-            faucibus vitae feugiat sit amet, <a href="/">Some link</a> iaculis
+            faucibus vitae feugiat sit amet, <a href="">Some link</a> iaculis
             ut mi.
           </p>
           <p>
@@ -97,7 +97,7 @@ export const NotificationWithMultipleParagraphsAndDismissible = (
           </p>
           <p>
             Dolor sit amet, consectetur adipiscing elit. Proin lacus velit,
-            faucibus vitae feugiat sit amet, <a href="/">Some link</a> iaculis
+            faucibus vitae feugiat sit amet, <a href="">Some link</a> iaculis
             ut mi.
           </p>
           <p>
@@ -123,7 +123,7 @@ export const MultipleParagraphsAndAction = (args: Args) => {
           </p>
           <p>
             Dolor sit amet, consectetur adipiscing elit. Proin lacus velit,
-            faucibus vitae feugiat sit amet, <a href="/">Some link</a> iaculis
+            faucibus vitae feugiat sit amet, <a href="">Some link</a> iaculis
             ut mi.
           </p>
           <p>
@@ -150,7 +150,7 @@ export const MultipleParagraphs = (args: Args) => {
           </p>
           <p>
             Dolor sit amet, consectetur adipiscing elit. Proin lacus velit,
-            faucibus vitae feugiat sit amet, <a href="/">Some link</a> iaculis
+            faucibus vitae feugiat sit amet, <a href="">Some link</a> iaculis
             ut mi.
           </p>
           <p>
@@ -196,7 +196,7 @@ export const ShortTextAndActionAsLink = (args: Args) => {
     <Notification
       {...args}
       content={<p>Lorem ipsum</p>}
-      action={<a href="/">An action</a>}
+      action={<a href="">An action</a>}
       isDismissible={false}
     />
   )
@@ -207,7 +207,7 @@ export const ShortTextAndActionAsLinkButStyledAsButton = (args: Args) => {
       {...args}
       content={<p>Lorem ipsum</p>}
       action={
-        <a href="/" className="btn btn-secondary btn-sm">
+        <a href="" className="btn btn-secondary btn-sm">
           An action
         </a>
       }
@@ -233,7 +233,7 @@ export const LongActionLink = (args: Args) => {
   return (
     <Notification
       {...args}
-      action={<a href="/">Action that has a lot of text</a>}
+      action={<a href="">Action that has a lot of text</a>}
     />
   )
 }
@@ -274,7 +274,7 @@ export const OverlayedWithCustomClass = (args: Args) => {
           <p>
             This can be <b>any HTML</b> passed to the component. For example,
             paragraphs, headers, <code>code samples</code>,{' '}
-            <a href="/">links</a>, etc are all supported.
+            <a href="">links</a>, etc are all supported.
           </p>
         }
         className="ol-overlay"
@@ -356,7 +356,7 @@ export const SuccessFlow = (args: Args) => {
   const successNotification = (
     <Notification
       {...args}
-      action={<a href="/">Now follow this link to go home</a>}
+      action={<a href="">Now follow this link to go home</a>}
       type="success"
       content={<p>Success! You made a successful request.</p>}
     />
@@ -377,7 +377,7 @@ export default {
     content: (
       <p>
         This can be <b>any HTML</b> passed to the component. For example,
-        paragraphs, headers, <code>code samples</code>, <a href="/">links</a>,
+        paragraphs, headers, <code>code samples</code>, <a href="">links</a>,
         etc are all supported.
       </p>
     ),

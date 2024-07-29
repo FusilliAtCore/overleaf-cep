@@ -17,14 +17,14 @@ module.exports = {
     })
 
     webRouter.get(
-      '/user/password/reset',
+      'user/password/reset',
       validate({
         query: { error: Joi.string() },
       }),
       PasswordResetController.renderRequestResetForm
     )
     webRouter.post(
-      '/user/password/reset',
+      'user/password/reset',
       validate({
         body: Joi.object({
           email: Joi.string().required(),
@@ -34,10 +34,10 @@ module.exports = {
       CaptchaMiddleware.validateCaptcha('passwordReset'),
       PasswordResetController.requestReset
     )
-    AuthenticationController.addEndpointToLoginWhitelist('/user/password/reset')
+    AuthenticationController.addEndpointToLoginWhitelist('user/password/reset')
 
     webRouter.get(
-      '/user/password/set',
+      'user/password/set',
       validate({
         query: {
           email: Joi.string().required(),
@@ -48,7 +48,7 @@ module.exports = {
       PasswordResetController.renderSetPasswordForm
     )
     webRouter.post(
-      '/user/password/set',
+      'user/password/set',
       validate({
         body: Joi.object({
           password: Joi.string().required(),
@@ -58,10 +58,10 @@ module.exports = {
       rateLimit,
       PasswordResetController.setNewUserPassword
     )
-    AuthenticationController.addEndpointToLoginWhitelist('/user/password/set')
+    AuthenticationController.addEndpointToLoginWhitelist('user/password/set')
 
     webRouter.post(
-      '/user/reconfirm',
+      'user/reconfirm',
       validate({
         body: Joi.object({
           email: Joi.string().required(),

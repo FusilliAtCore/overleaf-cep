@@ -20,7 +20,7 @@ function contactsAuthenticationMiddleware() {
 module.exports = {
   apply(webRouter) {
     webRouter.get(
-      '/user/contacts',
+      'user/contacts',
       contactsAuthenticationMiddleware(),
       ContactController.getContacts
     )

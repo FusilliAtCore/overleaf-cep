@@ -11,7 +11,7 @@ function PdfPreviewErrorBoundaryFallback({ type }) {
       components={[
         // eslint-disable-next-line jsx-a11y/anchor-has-content
         <a
-          href="/learn/how-to/Resolving_access%2C_loading%2C_and_display_problems"
+          href="learn/how-to/Resolving_access%2C_loading%2C_and_display_problems"
           target="_blank"
           key="troubleshooting-link"
         />,

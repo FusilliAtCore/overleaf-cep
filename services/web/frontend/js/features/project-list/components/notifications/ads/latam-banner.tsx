@@ -11,25 +11,25 @@ const LATAM_CURRENCIES = {
     name: 'Mexican Pesos',
     countryCode: 'MX',
     discountCode: '25',
-    imageSource: '/img/subscriptions/mexico-discount-modal.png',
+    imageSource: 'img/subscriptions/mexico-discount-modal.png',
   },
   COP: {
     name: 'Colombian Pesos',
     countryCode: 'CO',
     discountCode: '60',
-    imageSource: '/img/subscriptions/colombia-discount-modal.png',
+    imageSource: 'img/subscriptions/colombia-discount-modal.png',
   },
   CLP: {
     name: 'Chilean Pesos',
     countryCode: 'CL',
     discountCode: '30',
-    imageSource: '/img/subscriptions/chile-discount-modal.png',
+    imageSource: 'img/subscriptions/chile-discount-modal.png',
   },
   PEN: {
     name: 'Peruvian Soles',
     countryCode: 'PE',
     discountCode: '40',
-    imageSource: '/img/subscriptions/peru-discount-modal.png',
+    imageSource: 'img/subscriptions/peru-discount-modal.png',
   },
 }
 

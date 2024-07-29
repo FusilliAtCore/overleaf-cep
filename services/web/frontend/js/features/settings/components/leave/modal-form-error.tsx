@@ -20,7 +20,7 @@ function LeaveModalFormError({ error }: LeaveModalFormErrorProps) {
         <Trans
           i18nKey="user_deletion_password_reset_tip"
           // eslint-disable-next-line react/jsx-key, jsx-a11y/anchor-has-content
-          components={[<a href="/user/password/reset" />]}
+          components={[<a href="user/password/reset" />]}
         />
       )
     }

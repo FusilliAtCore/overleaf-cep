@@ -55,7 +55,7 @@ function Institution() {
                         tOptions={{ interpolation: { escapeValue: true } }}
                       />{' '}
                       <a
-                        href="/learn/how-to/Institutional_Login"
+                        href="learn/how-to/Institutional_Login"
                         target="_blank"
                       >
                         {t('learn_more')}
@@ -132,7 +132,7 @@ function Institution() {
                 action={
                   <OLButton
                     variant="secondary"
-                    href="/learn/how-to/Institutional_Login"
+                    href="learn/how-to/Institutional_Login"
                     target="_blank"
                   >
                     {t('find_out_more')}

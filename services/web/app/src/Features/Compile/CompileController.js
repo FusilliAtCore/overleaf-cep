@@ -396,7 +396,7 @@ module.exports = CompileController = {
         res.sendStatus(500)
         return
       }
-      const url = `/project/${projectId}/output/output.pdf`
+      const url = `project/${projectId}/output/output.pdf`
       CompileController.proxyToClsi(
         projectId,
         'output-file',
@@ -480,22 +480,22 @@ module.exports = CompileController = {
   _getFileUrl(projectId, userId, buildId, file) {
     let url
     if (userId != null && buildId != null) {
-      url = `/project/${projectId}/user/${userId}/build/${buildId}/output/${file}`
+      url = `project/${projectId}/user/${userId}/build/${buildId}/output/${file}`
     } else if (userId != null) {
-      url = `/project/${projectId}/user/${userId}/output/${file}`
+      url = `project/${projectId}/user/${userId}/output/${file}`
     } else if (buildId != null) {
-      url = `/project/${projectId}/build/${buildId}/output/${file}`
+      url = `project/${projectId}/build/${buildId}/output/${file}`
     } else {
-      url = `/project/${projectId}/output/${file}`
+      url = `project/${projectId}/output/${file}`
     }
     return url
   },
 
   // compute a POST url for a project, user (optional) and action
   _getUrl(projectId, userId, action) {
-    let path = `/project/${projectId}`
+    let path = `project/${projectId}`
     if (userId != null) {
-      path += `/user/${userId}`
+      path += `user/${userId}`
     }
     return `${path}/${action}`
   },

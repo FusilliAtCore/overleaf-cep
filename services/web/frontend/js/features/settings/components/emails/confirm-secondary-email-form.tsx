@@ -16,8 +16,8 @@ export default function ConfirmSecondaryEmailForm() {
     <ConfirmEmailForm
       successMessage={successMessage}
       successButtonText={t('go_to_overleaf')}
-      confirmationEndpoint="/user/emails/confirm-secondary"
-      resendEndpoint="/user/emails/resend-secondary-confirmation"
+      confirmationEndpoint="user/emails/confirm-secondary"
+      resendEndpoint="user/emails/resend-secondary-confirmation"
       flow="secondary"
     />
   )

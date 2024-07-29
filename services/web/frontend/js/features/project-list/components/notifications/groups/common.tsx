@@ -212,7 +212,7 @@ function CommonNotification({ notification }: CommonNotificationProps) {
             </>
           }
           action={
-            <OLButton variant="secondary" href="/user/settings">
+            <OLButton variant="secondary" href="user/settings">
               Account Settings
             </OLButton>
           }
@@ -238,7 +238,7 @@ function CommonNotification({ notification }: CommonNotificationProps) {
                   components={[<b />]} // eslint-disable-line react/jsx-key
                 />{' '}
                 <a
-                  href="/learn/how-to/Dropbox_Synchronization#Troubleshooting"
+                  href="learn/how-to/Dropbox_Synchronization#Troubleshooting"
                   target="_blank"
                 >
                   {t('learn_more')}
@@ -263,13 +263,13 @@ function CommonNotification({ notification }: CommonNotificationProps) {
                 <Trans
                   i18nKey="can_now_relink_dropbox"
                   /* eslint-disable-next-line jsx-a11y/anchor-has-content, react/jsx-key */
-                  components={[<a href="/user/settings#project-sync" />]}
+                  components={[<a href="user/settings#project-sync" />]}
                 />
               ) : (
                 t('confirm_affiliation_to_relink_dropbox')
               )}{' '}
               <a
-                href="/learn/how-to/Institutional_Email_Reconfirmation"
+                href="learn/how-to/Institutional_Email_Reconfirmation"
                 target="_blank"
               >
                 {t('learn_more')}
@@ -289,7 +289,7 @@ function CommonNotification({ notification }: CommonNotificationProps) {
             <Trans
               i18nKey="notification_personal_and_group_subscriptions"
               /* eslint-disable-next-line jsx-a11y/anchor-has-content, react/jsx-key */
-              components={[<strong />, <a href="/user/subscription" />]}
+              components={[<strong />, <a href="user/subscription" />]}
             />
           }
         />

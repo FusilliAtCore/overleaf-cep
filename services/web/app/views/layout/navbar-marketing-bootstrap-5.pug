@@ -4,16 +4,16 @@ nav.navbar.navbar-default.navbar-main.navbar-expand-lg
 	.container-fluid.navbar-container
 		.navbar-header
 			if settings.nav.custom_logo
-				a(href='/', aria-label=settings.appName, style='background-image:url("'+settings.nav.custom_logo+'")').navbar-brand
+				a(href='', aria-label=settings.appName, style='background-image:url("'+settings.nav.custom_logo+'")').navbar-brand
 			else if (nav.title)
-				a(href='/', aria-label=settings.appName).navbar-title #{nav.title}
+				a(href='', aria-label=settings.appName).navbar-title #{nav.title}
 			else
-				a(href='/', aria-label=settings.appName).navbar-brand
+				a(href='', aria-label=settings.appName).navbar-brand
 
 			- var enableUpgradeButton = projectDashboardReact && usersBestSubscription && usersBestSubscription.type === 'free'
 			if (enableUpgradeButton)
 				a.btn.btn-primary.me-2.d-md-none(
-					href="/user/subscription/plans"
+					href="user/subscription/plans"
 					event-tracking="upgrade-button-click"
 					event-tracking-mb="true"
 					event-tracking-label="upgrade"
@@ -50,15 +50,15 @@ nav.navbar.navbar-default.navbar-main.navbar-expand-lg
 								span.caret
 							+dropdown-menu.dropdown-menu-end
 								if canDisplayAdminMenu
-									+dropdown-menu-link-item()(href="/admin") Manage Site
-									+dropdown-menu-link-item()(href="/admin/user") Manage Users
-									+dropdown-menu-link-item()(href="/admin/project") Project URL Lookup
+									+dropdown-menu-link-item()(href="admin") Manage Site
+									+dropdown-menu-link-item()(href="admin/user") Manage Users
+									+dropdown-menu-link-item()(href="admin/project") Project URL Lookup
 								if canDisplayAdminRedirect
 									+dropdown-menu-link-item()(href=settings.adminUrl) Switch to Admin
 								if canDisplaySplitTestMenu
-									+dropdown-menu-link-item()(href="/admin/split-test") Manage Feature Flags
+									+dropdown-menu-link-item()(href="admin/split-test") Manage Feature Flags
 								if canDisplaySurveyMenu
-									+dropdown-menu-link-item()(href="/admin/survey") Manage Surveys
+									+dropdown-menu-link-item()(href="admin/survey") Manage Surveys
 
 					// loop over header_extras
 					each item in nav.header_extras
@@ -122,7 +122,7 @@ nav.navbar.navbar-default.navbar-main.navbar-expand-lg
 						if hasFeature('registration-page')
 							+nav-item.primary
 								+nav-link(
-									href="/register"
+									href="register"
 									event-tracking="menu-clicked-register"
 									event-tracking-action="clicked"
 									event-tracking-trigger="click"
@@ -133,7 +133,7 @@ nav.navbar.navbar-default.navbar-main.navbar-expand-lg
 						// login link
 						+nav-item
 							+nav-link(
-								href="/login"
+								href="login"
 								event-tracking="menu-clicked-login"
 								event-tracking-action="clicked"
 								event-tracking-trigger="click"
@@ -144,7 +144,7 @@ nav.navbar.navbar-default.navbar-main.navbar-expand-lg
 					// projects link and account menu
 					if getSessionUser()
 						+nav-item
-							+nav-link(href="/project") #{translate('Projects')}
+							+nav-link(href="project") #{translate('Projects')}
 						+nav-item.dropdown
 							button.dropdown-toggle(
 								aria-haspopup="true",
@@ -157,9 +157,9 @@ nav.navbar.navbar-default.navbar-main.navbar-expand-lg
 								+dropdown-menu-item
 									div.disabled.dropdown-item #{getSessionUser().email}
 								+dropdown-menu-divider
-								+dropdown-menu-link-item()(href="/user/settings") #{translate('Account Settings')}
+								+dropdown-menu-link-item()(href="user/settings") #{translate('Account Settings')}
 								if nav.showSubscriptionLink
-									+dropdown-menu-link-item()(href="/user/subscription") #{translate('subscription')}
+									+dropdown-menu-link-item()(href="user/subscription") #{translate('subscription')}
 								+dropdown-menu-divider
 								+dropdown-menu-item
 									//-
@@ -174,7 +174,7 @@ nav.navbar.navbar-default.navbar-main.navbar-expand-lg
 										| #{translate('log_out')}
 									form(
 										method="POST",
-										action="/logout",
+										action="logout",
 										id="logOutForm"
 									)
 										input(name='_csrf', type='hidden', value=csrfToken)

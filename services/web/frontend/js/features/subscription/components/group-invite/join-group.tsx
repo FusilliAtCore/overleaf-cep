@@ -54,7 +54,7 @@ export default function JoinGroup({
         <p>{t('join_team_explanation')}</p>
         {!expired && (
           <p>
-            <a className={notNowBtnClasses} href="/project">
+            <a className={notNowBtnClasses} href="project">
               {t('not_now')}
             </a>
             &nbsp;&nbsp;

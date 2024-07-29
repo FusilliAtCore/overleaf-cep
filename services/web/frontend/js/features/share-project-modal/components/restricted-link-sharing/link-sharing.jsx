@@ -168,7 +168,7 @@ function TokenBasedSharing({
               <AccessToken
                 token={tokens?.readAndWrite}
                 tokenHashPrefix={tokens?.readAndWriteHashPrefix}
-                path="/"
+                path=""
                 tooltipId="tooltip-copy-link-rw"
               />
             </div>
@@ -177,7 +177,7 @@ function TokenBasedSharing({
               <AccessToken
                 token={tokens?.readOnly}
                 tokenHashPrefix={tokens?.readOnlyHashPrefix}
-                path="/read/"
+                path="read/"
                 tooltipId="tooltip-copy-link-ro"
               />
             </div>
@@ -250,7 +250,7 @@ export function ReadOnlyTokenLink() {
           <AccessToken
             token={tokens?.readOnly}
             tokenHashPrefix={tokens?.readOnlyHashPrefix}
-            path="/read/"
+            path="read/"
             tooltipId="tooltip-copy-link-ro"
           />
         </div>
@@ -303,7 +303,7 @@ function LinkSharingInfo() {
       description={t('learn_more_about_link_sharing')}
     >
       <a
-        href="/learn/how-to/What_is_Link_Sharing%3F"
+        href="learn/how-to/What_is_Link_Sharing%3F"
         target="_blank"
         rel="noopener"
       >

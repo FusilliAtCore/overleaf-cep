@@ -191,7 +191,7 @@ const _ProjectController = {
     const { projectName, tags } = req.body
     logger.debug({ projectId, projectName }, 'cloning project')
     if (!SessionManager.isUserLoggedIn(req.session)) {
-      return res.json({ redir: '/register' })
+      return res.json({ redir: 'register' })
     }
     const currentUser = SessionManager.getSessionUser(req.session)
     const { first_name: firstName, last_name: lastName, email } = currentUser

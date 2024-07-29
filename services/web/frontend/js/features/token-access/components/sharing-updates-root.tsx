@@ -77,7 +77,7 @@ function SharingUpdatesRoot() {
                     components={[
                       // eslint-disable-next-line jsx-a11y/anchor-has-content, react/jsx-key
                       <a
-                        href="/blog/changes-to-project-sharing"
+                        href="blog/changes-to-project-sharing"
                         rel="noopener noreferrer"
                         target="_blank"
                         onClick={() => {

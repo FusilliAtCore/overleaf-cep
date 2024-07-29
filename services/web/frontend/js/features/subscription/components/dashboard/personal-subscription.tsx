@@ -59,7 +59,7 @@ function PersonalSubscription() {
       <p>
         <Trans
           i18nKey="please_contact_support_to_makes_change_to_your_plan"
-          components={[<a href="/contact" />]} // eslint-disable-line react/jsx-key, jsx-a11y/anchor-has-content
+          components={[<a href="contact" />]} // eslint-disable-line react/jsx-key, jsx-a11y/anchor-has-content
         />
       </p>
     )

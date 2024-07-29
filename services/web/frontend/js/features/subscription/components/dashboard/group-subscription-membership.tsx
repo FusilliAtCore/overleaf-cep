@@ -29,7 +29,7 @@ export default function GroupSubscriptionMembership({
       <p>
         <Trans
           i18nKey="you_are_on_x_plan_as_member_of_group_subscription_y_administered_by_z"
-          components={[<a href="/user/subscription/plans" />, <strong />]} // eslint-disable-line react/jsx-key, jsx-a11y/anchor-has-content
+          components={[<a href="user/subscription/plans" />, <strong />]} // eslint-disable-line react/jsx-key, jsx-a11y/anchor-has-content
           values={{
             planName: subscription.planLevelName,
             groupName: subscription.teamName || '',

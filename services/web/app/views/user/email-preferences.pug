@@ -14,10 +14,10 @@ block content
 
 						- var submitAction
 						if subscribed
-							- submitAction = '/user/newsletter/unsubscribe'
+							- submitAction = 'user/newsletter/unsubscribe'
 							p !{translate("newsletter_info_subscribed", {}, ['strong'])}
 						else
-							- submitAction = '/user/newsletter/subscribe'
+							- submitAction = 'user/newsletter/subscribe'
 							p !{translate("newsletter_info_unsubscribed", {}, ['strong'])}
 
 						form(

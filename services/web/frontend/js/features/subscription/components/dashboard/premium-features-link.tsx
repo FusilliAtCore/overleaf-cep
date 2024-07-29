@@ -4,7 +4,7 @@ function PremiumFeaturesLink() {
   const featuresPageLink = (
     // translation adds content
     // eslint-disable-next-line jsx-a11y/anchor-has-content
-    <a href="/about/features-overview" />
+    <a href="about/features-overview" />
   )
 
   return (

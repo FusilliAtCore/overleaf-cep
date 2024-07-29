@@ -939,7 +939,7 @@ describe('AuthenticationController', function () {
       this.req.session.postLoginRedirect.should.equal(
         '/target/url?extra_query=foo'
       )
-      this.res.redirectedTo.should.equal('/register?extra_query=foo')
+      this.res.redirectedTo.should.equal('register?extra_query=foo')
     })
 
     it('should log out a message', function () {

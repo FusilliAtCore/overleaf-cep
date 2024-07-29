@@ -36,7 +36,7 @@ export const AccessAttemptScreen: FC<{
                   {t('token_access_failure')}
                 </div>
                 <p>
-                  <a href="/">{t('home')}</a>
+                  <a href="">{t('home')}</a>
                 </p>
               </div>
             )}

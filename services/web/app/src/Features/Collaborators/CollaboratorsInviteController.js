@@ -319,7 +319,7 @@ const CollaboratorsInviteController = {
         user_first_name: owner.first_name,
       }
       AuthenticationController.setRedirectInSession(req)
-      return res.redirect('/register')
+      return res.redirect('register')
     }
 
     // cleanup if set for register page
